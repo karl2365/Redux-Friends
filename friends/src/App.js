@@ -10,7 +10,18 @@ import Login from "./components/login";
 import Friends from "./components/friends";
 import "./styles.css";
 
-window.axios = axios;
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      localStorage.getItem("token") ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
+);
 
 function App() {
   return (
@@ -20,7 +31,9 @@ function App() {
         <Link to="/friends">Friends</Link>
       </div> */}
       <Route exact path="/" component={Login} />
-      <Route
+      <PrivateRoute exact path="/friends" component={Friends} />
+    
+      {/* <Route
         exact
         path="/friends"
         render={props => {
@@ -31,7 +44,7 @@ function App() {
           }
           return <Friends {...props} />;
         }}
-      />
+      /> */}
     </div>
   );
 }

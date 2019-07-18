@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './component.css';
+
+
+
 
 function Friends({ history }) {
-  const [message, setMessage] = useState("");
+const [friendsList, setFriendsList] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
     const url =
@@ -16,19 +20,27 @@ function Friends({ history }) {
           }
         })
         .then(response => {
-          setMessage(response.data.message);
+            console.log(response.data)
+          setFriendsList(response.data);
         })
         .catch(e => {
-          console.log(e.response.data);
-        //   localStorage.removeItem("token");
+          console.log(e.response);
+          localStorage.removeItem("token");
           history.push("/");
         });
     }
   }, [history]);
+  if (!friendsList) return <div>Loading</div>
   return (
     <>
       <div>Friends</div>
-      <div>{message}</div>
+   
+      {friendsList.map(friend => 
+      <div className="friendList">
+        <p className="friendName">Name: {friend.name}</p>
+        <p className="friendAge">Age: {friend.age}</p>
+        <p className="friendEmail">Email: {friend.email}</p>
+      </div>)}
       <button
         className="btn"
         onClick={() => {

@@ -1,0 +1,7 @@
+.friendList {
+    display: flex;
+}
+
+.friendList p {
+    width: 20%;
+}

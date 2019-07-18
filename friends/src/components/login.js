@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
-function Login({ touched, errors }) {
+function Login({ touched, errors, }) {
   const token = localStorage.getItem("token");
 
   if (token) {
