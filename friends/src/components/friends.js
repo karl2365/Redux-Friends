@@ -33,7 +33,9 @@ const [friendsList, setFriendsList] = useState([]);
   if (!friendsList) return <div>Loading</div>
   return (
     <>
-      <div>Friends</div>
+      <div className="friendHeader">
+          <p>My Friends</p>
+      </div>
    
       {friendsList.map(friend => 
       <div className="friendList">
@@ -42,7 +44,7 @@ const [friendsList, setFriendsList] = useState([]);
         <p className="friendEmail">Email: {friend.email}</p>
       </div>)}
       <button
-        className="btn"
+        className="btn logoutButton"
         onClick={() => {
           localStorage.removeItem("token");
           history.push("/");
