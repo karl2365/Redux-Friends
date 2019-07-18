@@ -14,14 +14,13 @@ const handleChanges = e => {
 
 const handleSubmit = e => {
     e.preventDefault()
-    console.log('new friend', newFriend)
+    // console.log('new friend', newFriend)
  
     const token = localStorage.getItem("token");
     const url =
       "http://localhost:5000/api/friends";
 
     if (token) {
-        console.log('in conditional')
       axios
         .post(url, newFriend,  {
           headers: {
@@ -36,6 +35,26 @@ const handleSubmit = e => {
           console.log(e.response);
          
         });
+        axios
+        .get(url, {
+          headers: {
+            Authorization: `${token}` 
+          }
+        })
+        .then(response => {
+            console.log(response.data)
+          setFriendsList(response.data);
+        })
+        .catch(e => {
+          console.log(e.response);
+          localStorage.removeItem("token");
+          history.push("/");
+        });
+        setNewFriend({
+            name: '',
+            age: '',
+            email: ''
+        })
     }
 
 
