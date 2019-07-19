@@ -8,7 +8,7 @@ function Login({ touched, errors, }) {
   const token = localStorage.getItem("token");
 
   if (token) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/friends" />;
   }
 
   return (
