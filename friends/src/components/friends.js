@@ -100,14 +100,6 @@ const handleSubmit = e => {
         <p className="friendEmail">Email: {friend.email}</p>
       </div>)}
 
-        <form onSubmit={handleSubmit}>
-            <input type='text' name='name' placeholder='name' onChange={handleChanges} value={newFriend.name} />
-            <input type='text' name='age' placeholder='age'  onChange={handleChanges} value={newFriend.age}  />
-            <input type='email' name='email' placeholder='email'  onChange={handleChanges}  value={newFriend.email} />
-            <button type='submit'>submit</button>
-
-        </form>
-
       <button
         className="btn logoutButton"
         onClick={() => {
@@ -117,6 +109,16 @@ const handleSubmit = e => {
       >
         Logout
       </button>
+        <form className="form" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <h2>Add New Friend</h2>
+                <input className="input" type='text' name='name' placeholder='name' onChange={handleChanges} value={newFriend.name} />
+                <input className="input" type='text' name='age' placeholder='age'  onChange={handleChanges} value={newFriend.age}  />
+                <input className="input" type='email' name='email' placeholder='email'  onChange={handleChanges}  value={newFriend.email} />
+                <button className="btn" type='submit'>submit</button>
+            </div>
+        </form>
+
     </>
   );
 }
